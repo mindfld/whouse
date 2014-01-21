@@ -41,7 +41,6 @@ public class HibernateTest {
     }
 
     @Test
-    @Ignore
     public void getUsers() {
         User user = new User();
         user.setName("Sergiy");
