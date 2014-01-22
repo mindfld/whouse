@@ -4,8 +4,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 import ua.mind.warehouse.domain.entities.user.Role;
 import ua.mind.warehouse.domain.entities.user.User;
-import ua.mind.warehouse.persistance.DAO;
-import ua.mind.warehouse.persistance.JPADaoImpl;
+import ua.mind.warehouse.persistance.UserDAO;
+import ua.mind.warehouse.persistance.JPAUserDaoImpl;
 import ua.mind.warehouse.utils.HibernateUtil;
 
 import java.util.List;
@@ -15,29 +15,29 @@ import java.util.List;
  */
 
 public class HibernateTest {
-    DAO database;
+    UserDAO database;
 
     @Before
     public void init() {
-        database = new JPADaoImpl();
+        database = new JPAUserDaoImpl();
     }
 
     @Test
-    public void inswertUsers() {
+    public void insertUsers() {
         User user = new User();
         user.setName("Sergiy");
         user.setRole(Role.STOREKEEPER);
+        user.setLogin("mind");
+        user.setPassword("medusa");
         database.addUser(user);
 
         User user1 = new User();
         user1.setName("Victor");
         user1.setRole(Role.DIRECTOR);
+        user1.setLogin("vitas");
+        user1.setPassword("vitas");
         database.addUser(user1);
 
-        User user2 = new User();
-        user2.setName("Grisha");
-        user2.setRole(Role.WORKER);
-        database.addUser(user2);
     }
 
     @Test

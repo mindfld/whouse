@@ -7,7 +7,8 @@ import java.util.List;
 /**
  * Created by Сергій on 17.01.14.
  */
-public interface DAO {
+public interface UserDAO {
     public List<User> getAllUsers();
     public void addUser (User user);
+    public boolean authorized(String login, String password);
 }

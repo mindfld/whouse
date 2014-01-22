@@ -11,39 +11,22 @@
 <h:body>
 
     <h1>Login page</h1>
-    <h:form id="form">
-        <h:outputLink id="loginLink" value="javascript:void(0)" onclick="PF('dlg').show()" title="login">
-            Login
-        </h:outputLink>
-        <p:growl id="growl" showDetail="true" life="3000"/>
-        <p:dialog id="dialog" header="Login" widgetVar="dlg" resizable="false">
-            <h:panelGrid columns="2" cellpadding="5">
-                <h:outputLabel for="username" value="Username:"/>
-                <p:inputText value="#{loginBean.username}"
-                             id="username" required="true" label="username"/>
-                <h:outputLabel for="password" value="Password:"/>
-                <h:inputSecret value="#{loginBean.password}"
-                               id="password" required="true" label="password"/>
-                <f:facet name="footer">
-                    <p:commandButton id="loginButton" value="Login" update="growl"
-                                     actionListener="#{loginBean.login}"
-                                     oncomplete="handleLoginRequest(xhr, status, args)"/>
-                </f:facet>
+    <h:form id="loginForm">
+        <p:growl id="msg" showDetail="true" life="3000" />
+        <p:panel header="Login" style="width: 360px;">
+            <h:panelGrid id="loginPanel" columns="2">
+                <h:outputText value="Username" />
+                <p:inputText id="username" value="#{loginBean.username}" ></p:inputText>
+                <p:spacer></p:spacer>
+                <p:message for="username" ></p:message>
+                <h:outputText value="Password" />
+                <p:password id="password" value="#{loginBean.password}"  feedback="false"></p:password>
+                <p:spacer></p:spacer>
+                <p:message for="password"></p:message>
+                <p:spacer></p:spacer>
+                <p:commandButton action="#{loginBean.login}" value="Login" update="loginForm" ajax="true"></p:commandButton>
             </h:panelGrid>
-        </p:dialog>
+        </p:panel>
     </h:form>
-
-    <script type="text/javascript">
-        function handleLoginRequest(xhr, status, args) {
-            if (args.validationFailed || !args.loggedIn) {
-                PF('dlg').jq.effect("shake", { times: 5 }, 100);
-            }
-            else {
-                PF('dlg').hide();
-                $('#loginLink').fadeOut();
-            }
-        }
-    </script>
-
 </h:body>
 </html>

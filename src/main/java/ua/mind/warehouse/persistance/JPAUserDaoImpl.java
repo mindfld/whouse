@@ -2,20 +2,17 @@ package ua.mind.warehouse.persistance;
 
 import ua.mind.warehouse.domain.entities.user.User;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Сергій on 17.01.14.
  */
-public class JPADaoImpl implements DAO {
+public class JPAUserDaoImpl implements UserDAO {
     private EntityManager entityManager;
 
-    public JPADaoImpl() {
+    public JPAUserDaoImpl() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("whouse");
         this.entityManager = entityManagerFactory.createEntityManager();
     }
@@ -45,5 +42,22 @@ public class JPADaoImpl implements DAO {
         } catch (Exception e) {
             transaction.rollback();
         }
+    }
+
+    @Override
+    public boolean authorized(String login, String password) {
+        Query q = entityManager.createQuery("SELECT u FROM User u WHERE u.login = :login AND u.password = :pass");
+        q.setParameter("login", login);
+        q.setParameter("pass", password);
+        try {
+            User user = (User) q.getSingleResult();
+            if (login.equalsIgnoreCase(user.getLogin()) && password.equals(user.getPassword())) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("Ololo");
+                        //TODO LOGIN ERROR
+        }
+        return false;
     }
 }
