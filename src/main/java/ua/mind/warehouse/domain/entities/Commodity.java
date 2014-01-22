@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by Сергій on 17.01.14.
  */
 @Entity
-@Table(name="COMMODITY")
+@Table(name = "COMMODITY")
 public class Commodity {
 
     @Id
@@ -18,7 +18,7 @@ public class Commodity {
     @Column
     String description;
     @Column
-    String measurementUnit;
+    MeasurementUnit measurementUnit;
 
     public Commodity() {
     }
@@ -47,11 +47,11 @@ public class Commodity {
         this.description = description;
     }
 
-    public String getMeasurementUnit() {
+    public MeasurementUnit getMeasurementUnit() {
         return measurementUnit;
     }
 
-    public void setMeasurementUnit(String measurementUnit) {
+    public void setMeasurementUnit(MeasurementUnit measurementUnit) {
         this.measurementUnit = measurementUnit;
     }
 }

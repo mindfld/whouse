@@ -10,5 +10,5 @@ import java.util.List;
 public interface UserDAO {
     public List<User> getAllUsers();
     public void addUser (User user);
-    public boolean authorized(String login, String password);
+    public User getUserByCredentials(String login, String password);
 }

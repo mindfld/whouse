@@ -1,6 +1,6 @@
 package ua.mind.warehouse.ui;
 
-import org.primefaces.context.RequestContext;
+import ua.mind.warehouse.domain.entities.user.User;
 import ua.mind.warehouse.persistance.JPAUserDaoImpl;
 import ua.mind.warehouse.persistance.UserDAO;
 
@@ -8,7 +8,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by Сергій on 18.01.14.
@@ -39,8 +40,10 @@ public class LoginBean {
 
     public String login() {
         UserDAO userDao = new JPAUserDaoImpl();
-        boolean result = userDao.authorized(username, password);
-        if (result) {
+        User user = userDao.getUserByCredentials(username, password);
+        if (user != null) {
+            HttpSession session = ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession(true);
+            session.setAttribute("user", user);
             return "cabinet";
         } else {
             FacesContext.getCurrentInstance().addMessage(
@@ -50,5 +53,11 @@ public class LoginBean {
                             "Please Try Again!"));
             return "fail";
         }
+    }
+    public String logout() {
+            HttpSession session = ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession(true);
+            session.invalidate();
+            return "index";
+
     }
 }

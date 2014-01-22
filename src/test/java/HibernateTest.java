@@ -1,12 +1,10 @@
-import org.hibernate.Session;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import ua.mind.warehouse.domain.entities.user.Role;
 import ua.mind.warehouse.domain.entities.user.User;
-import ua.mind.warehouse.persistance.UserDAO;
 import ua.mind.warehouse.persistance.JPAUserDaoImpl;
-import ua.mind.warehouse.utils.HibernateUtil;
+import ua.mind.warehouse.persistance.UserDAO;
 
 import java.util.List;
 
@@ -23,6 +21,7 @@ public class HibernateTest {
     }
 
     @Test
+    @Ignore
     public void insertUsers() {
         User user = new User();
         user.setName("Sergiy");
@@ -42,36 +41,10 @@ public class HibernateTest {
 
     @Test
     public void getUsers() {
-        User user = new User();
-        user.setName("Sergiy");
-        user.setRole(Role.STOREKEEPER);
-        database.addUser(user);
 
         List<User> list = database.getAllUsers();
         System.out.println(list.size());
     }
 
-    @Ignore
-    @Test
-    public void insertCommodity() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
 
-        session.beginTransaction();
-
-        User user = new User();
-        user.setName("Sergiy");
-        user.setRole(Role.STOREKEEPER);
-        session.save(user);
-
-        User user1 = new User();
-        user.setName("Victor");
-        user.setRole(Role.DIRECTOR);
-        session.save(user1);
-
-        User user2 = new User();
-        user.setName("Grisha");
-        user.setRole(Role.WORKER);
-        session.save(user2);
-        session.getTransaction().commit();
-    }
 }

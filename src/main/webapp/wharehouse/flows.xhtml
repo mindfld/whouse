@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition>
+    <h:form>
+        <p:dataTable var="flow" value="#{flowsBean.commodityFlows}">
+            <p:column headerText="Назав товару">
+                <h:outputText value="#{flow.commodity.name}"/>
+            </p:column>
+
+            <p:column headerText="Опис товару">
+                <h:outputText value="#{flow.commodity.description}"/>
+            </p:column>
+
+            <p:column headerText="Кількість">
+                <h:outputText value="#{flow.count} #{flow.commodity.measurementUnit}"/>
+            </p:column>
+
+            <p:column headerText="Ім'я">
+                <h:outputText value="#{flow.user.name}"/>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</ui:composition>
+</html>

@@ -45,19 +45,19 @@ public class JPAUserDaoImpl implements UserDAO {
     }
 
     @Override
-    public boolean authorized(String login, String password) {
+    public User getUserByCredentials(String login, String password) {
         Query q = entityManager.createQuery("SELECT u FROM User u WHERE u.login = :login AND u.password = :pass");
         q.setParameter("login", login);
         q.setParameter("pass", password);
         try {
             User user = (User) q.getSingleResult();
             if (login.equalsIgnoreCase(user.getLogin()) && password.equals(user.getPassword())) {
-                return true;
+                return user;
             }
         } catch (Exception e) {
             System.out.println("Ololo");
                         //TODO LOGIN ERROR
         }
-        return false;
+        return null;
     }
 }
