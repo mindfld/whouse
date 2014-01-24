@@ -3,7 +3,7 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
-    <persistence-unit name="whouse">
+    <persistence-unit name="test_whouse">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>ua.mind.warehouse.domain.entities.Commodity</class>
         <class>ua.mind.warehouse.domain.entities.user.User</class>
@@ -11,7 +11,7 @@
         <class>ua.mind.warehouse.domain.entities.Store</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/whouse"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/test_whouse"/>
             <property name="javax.persistence.jdbc.user" value="mind"/>
             <property name="javax.persistence.jdbc.password" value="medusa"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>

@@ -17,13 +17,13 @@
 
         <p:tabView activeIndex="0">
             <p:tab title="Склад">
-                <ui:include src="#"/>
+                <ui:include src="wharehouse/store.xhtml"/>
             </p:tab>
             <p:tab title="ХЗ поки шо ">
-                <ui:include src="#"/>
+                <ui:include src=""/>
             </p:tab>
-            <p:tab title="Замовлення">
-                <ui:include src="#"/>
+            <p:tab title="Замовлення"  rendered="#{user.role=='STOREKEEPER' || user.role=='DIRECTOR'}">
+                <ui:include src="wharehouse/orders.xhtml"/>
             </p:tab>
             <p:tab title="Заявки" icon="ui-icon-document"
                    rendered="#{user.role=='STOREKEEPER'}"/>
