@@ -13,16 +13,6 @@
 
     <build>
         <finalName>whouse</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <path>/${project.build.finalName}</path>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
 
     <dependencies>
@@ -33,7 +23,6 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.28</version>
         </dependency>
-
 
         <!-- Hibernate -->
         <dependency>

@@ -10,16 +10,21 @@
 </h:head>
 <h:body>
     <h:form id="cabinetForm" rendered="#{user!=null}">
-        <font size="6" >Персональный кабінет   </font>
-        <p:commandButton action="#{loginBean.logout}" value="Вихід" ></p:commandButton>
+        <font size="6">Персональный кабінет </font>
+        <p:commandButton action="#{loginBean.logout}" value="Вихід"></p:commandButton>
 
-        <p:separator id="customSeparator" style="width:100%;height:2px" />
+        <p:separator id="customSeparator" style="width:100%;height:2px"/>
 
         <p:tabView activeIndex="0">
-            <p:tab title="Склад" icon="ui-icon-home">
-                <ui:include src="wharehouse/flows.xhtml" />
+            <p:tab title="Склад">
+                <ui:include src="#"/>
             </p:tab>
-            <p:tab title="Замовлення" icon="ui-icon-search"/>
+            <p:tab title="ХЗ поки шо ">
+                <ui:include src="#"/>
+            </p:tab>
+            <p:tab title="Замовлення">
+                <ui:include src="#"/>
+            </p:tab>
             <p:tab title="Заявки" icon="ui-icon-document"
                    rendered="#{user.role=='STOREKEEPER'}"/>
         </p:tabView>

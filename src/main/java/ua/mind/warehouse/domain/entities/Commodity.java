@@ -6,14 +6,15 @@ import javax.persistence.*;
  * Created by Сергій on 17.01.14.
  */
 @Entity
-@Table(name = "COMMODITY")
+@Table(name = "COMMODITY", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "NAME") })
 public class Commodity {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column
+    @Column(unique = true,name = "NAME",nullable = false)
     String name;
     @Column
     String description;
@@ -54,4 +55,5 @@ public class Commodity {
     public void setMeasurementUnit(MeasurementUnit measurementUnit) {
         this.measurementUnit = measurementUnit;
     }
+
 }

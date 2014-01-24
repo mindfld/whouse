@@ -1,6 +1,7 @@
 package ua.mind.warehouse.domain.entities.user;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Сергій on 17.01.14.
@@ -8,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "USERS")
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue

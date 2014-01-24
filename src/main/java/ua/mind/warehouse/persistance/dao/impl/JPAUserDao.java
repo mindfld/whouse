@@ -1,6 +1,7 @@
-package ua.mind.warehouse.persistance;
+package ua.mind.warehouse.persistance.dao.impl;
 
 import ua.mind.warehouse.domain.entities.user.User;
+import ua.mind.warehouse.persistance.dao.UserDAO;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,10 +10,10 @@ import java.util.List;
 /**
  * Created by Сергій on 17.01.14.
  */
-public class JPAUserDaoImpl implements UserDAO {
+public class JPAUserDao implements UserDAO {
     private EntityManager entityManager;
 
-    public JPAUserDaoImpl() {
+    public JPAUserDao() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("whouse");
         this.entityManager = entityManagerFactory.createEntityManager();
     }

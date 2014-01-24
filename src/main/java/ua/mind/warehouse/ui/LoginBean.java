@@ -1,8 +1,8 @@
 package ua.mind.warehouse.ui;
 
 import ua.mind.warehouse.domain.entities.user.User;
-import ua.mind.warehouse.persistance.JPAUserDaoImpl;
-import ua.mind.warehouse.persistance.UserDAO;
+import ua.mind.warehouse.persistance.dao.impl.JPAUserDao;
+import ua.mind.warehouse.persistance.dao.UserDAO;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -39,7 +39,7 @@ public class LoginBean {
     }
 
     public String login() {
-        UserDAO userDao = new JPAUserDaoImpl();
+        UserDAO userDao = new JPAUserDao();
         User user = userDao.getUserByCredentials(username, password);
         if (user != null) {
             HttpSession session = ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession(true);

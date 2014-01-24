@@ -8,22 +8,22 @@
 
 <ui:composition>
     <h:form>
-        <p:dataTable var="flow" value="#{flowsBean.commodityFlows}">
+        <p:dataTable var="item" value="#{storeBean.storeList}">
+            <p:column headerText="№">
+                <h:outputText value="#{item.id}"/>
+            </p:column>
             <p:column headerText="Назав товару">
-                <h:outputText value="#{flow.commodity.name}"/>
+                <h:outputText value="#{item.commodity.name}"/>
             </p:column>
 
             <p:column headerText="Опис товару">
-                <h:outputText value="#{flow.commodity.description}"/>
+                <h:outputText value="#{item.commodity.description}"/>
             </p:column>
 
-            <p:column headerText="Кількість">
-                <h:outputText value="#{flow.count} #{flow.commodity.measurementUnit}"/>
+            <p:column headerText="Кількість на складі">
+                <h:outputText value="#{item.quantity} #{item.commodity.measurementUnit}"/>
             </p:column>
 
-            <p:column headerText="Ім'я">
-                <h:outputText value="#{flow.user.name}"/>
-            </p:column>
         </p:dataTable>
     </h:form>
 </ui:composition>

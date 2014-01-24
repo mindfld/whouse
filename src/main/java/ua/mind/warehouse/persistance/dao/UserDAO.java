@@ -1,4 +1,4 @@
-package ua.mind.warehouse.persistance;
+package ua.mind.warehouse.persistance.dao;
 
 import ua.mind.warehouse.domain.entities.user.User;
 
