@@ -11,6 +11,8 @@ import java.io.Serializable;
 @Table(name = "USERS")
 public class User implements Serializable {
 
+    private static User anonymous = new User ("Anonymous",Role.DIRECTOR,"anon","anon");
+
     @Id
     @GeneratedValue
     private Long id;
@@ -52,6 +54,16 @@ public class User implements Serializable {
     }
 
     public User() {
+    }
+
+    public User(String name, Role role, String password, String login) {
+        this.name = name;
+        this.role = role;
+        this.password = password;
+        this.login = login;
+    }
+    public static User getAnonymous(){
+        return anonymous;
     }
 
     public Long getId() {

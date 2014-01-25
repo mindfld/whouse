@@ -19,6 +19,14 @@ public class Store implements Serializable {
     @Column
     Integer quantity = 0;
 
+    public Store(Commodity commodity, Integer quantity) {
+        this.commodity=commodity;
+        this.quantity = quantity;
+    }
+
+    public Store() {
+    }
+
     public Long getId() {
         return id;
     }

@@ -17,11 +17,11 @@ public class Order {
     @GeneratedValue
     private Long id;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name = "ORDERITEMS")
-    private List<Commodity> commodity;
+    private List<Store> store;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.REFRESH)
     private User user;
 
     @Column
@@ -44,12 +44,12 @@ public class Order {
         this.user = user;
     }
 
-    public List<Commodity> getCommodity() {
-        return commodity;
+    public List<Store> getStore() {
+        return store;
     }
 
-    public void setCommodity(List<Commodity> commodity) {
-        this.commodity = commodity;
+    public void setStore(List<Store> store) {
+        this.store = store;
     }
 
     public boolean isCompleted() {
@@ -57,6 +57,12 @@ public class Order {
     }
 
     public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    public Order(List<Store> store, User user, boolean completed) {
+        this.store = store;
+        this.user = user;
         this.completed = completed;
     }
 }

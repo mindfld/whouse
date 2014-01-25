@@ -5,8 +5,10 @@ import ua.mind.warehouse.domain.entities.Store;
 import ua.mind.warehouse.persistance.dao.CommodityDao;
 import ua.mind.warehouse.persistance.dao.impl.JPACommodityDao;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import java.util.List;
 
 /**

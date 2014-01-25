@@ -5,7 +5,9 @@ import org.slf4j.LoggerFactory;
 import ua.mind.warehouse.domain.entities.Commodity;
 import ua.mind.warehouse.domain.entities.Order;
 import ua.mind.warehouse.domain.entities.Store;
+import ua.mind.warehouse.domain.entities.user.User;
 import ua.mind.warehouse.persistance.dao.CommodityDao;
+import ua.mind.warehouse.persistance.dao.UserDAO;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public class JPACommodityDao implements CommodityDao {
 
     static final Logger LOGGER = LoggerFactory.getLogger(JPACommodityDao.class);
     private EntityManager entityManager;
+    UserDAO userDAO = new JPAUserDao();
 
     public JPACommodityDao() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("whouse");
@@ -73,6 +76,8 @@ public class JPACommodityDao implements CommodityDao {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
+            User u = userDAO.getUserByCredentials(order.getUser().getLogin(),order.getUser().getPassword());
+            order.setUser(u);
             entityManager.persist(order);
             transaction.commit();
             return true;

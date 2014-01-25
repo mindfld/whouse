@@ -24,6 +24,12 @@ public class Commodity {
     public Commodity() {
     }
 
+    public Commodity(String name, String description, MeasurementUnit measurementUnit) {
+        this.name = name;
+        this.description = description;
+        this.measurementUnit = measurementUnit;
+    }
+
     public Long getId() {
         return id;
     }

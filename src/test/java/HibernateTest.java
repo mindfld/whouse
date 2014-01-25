@@ -57,29 +57,6 @@ public class HibernateTest {
         System.out.println(list.size());
     }
 
-    @Test
-    @Ignore
-    public void setOrder() {
-        User user = new User();
-        user.setName("OrderUser");
-        user.setRole(Role.STOREKEEPER);
-        user.setLogin("order");
-        user.setPassword("order");
-        userDB.addUser(user);
-
-        Commodity commodity = new Commodity();
-        commodity.setName("Дюбель 3мм");
-        commodity.setDescription("Стальный дюбель 3мм");
-        commodity.setMeasurementUnit(MeasurementUnit.pcs);
-
-        Order order = new Order();
-        order.setUser(user);
-        List<Commodity> commodities = new ArrayList<Commodity>();
-        commodities.add(commodity);
-        order.setCommodity(commodities);
-        commodityDB.addOrder(order);
-
-    }
 
     @Test
     public void checkStorePutGet() {
