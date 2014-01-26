@@ -1,7 +1,6 @@
 package ua.mind.warehouse.domain.entities.storage;
 
 import ua.mind.warehouse.domain.entities.MeasurementUnit;
-import ua.mind.warehouse.domain.entities.Store;
 
 import javax.persistence.*;
 
@@ -14,18 +13,19 @@ import javax.persistence.*;
 public class Commodity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,)
-    @Column(name = '')
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "COMMODITY_ID", unique = true, nullable = false)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    Store store;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "STORAGE_ID", nullable = false)
+    private Storage storage;
 
-    @Column(unique = true, name = "NAME", nullable = false)
+    @Column(name = "NAME", unique = true, nullable = false)
     String name;
-    @Column
+    @Column(name = "DESCRIPTION")
     String description;
-    @Column
+    @Column(name = "MEASUREMENT", nullable = false)
     MeasurementUnit measurementUnit;
 
     public Commodity() {
@@ -37,12 +37,12 @@ public class Commodity {
         this.measurementUnit = measurementUnit;
     }
 
-    public Store getStore() {
-        return store;
+    public Storage getStorage() {
+        return storage;
     }
 
-    public void setStore(Store store) {
-        this.store = store;
+    public void setStorage(Storage storage) {
+        this.storage = storage;
     }
 
     public Long getId() {

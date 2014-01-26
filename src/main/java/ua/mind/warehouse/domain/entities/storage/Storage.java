@@ -1,10 +1,8 @@
 package ua.mind.warehouse.domain.entities.storage;
 
-import ua.mind.warehouse.domain.entities.MeasurementUnit;
-import ua.mind.warehouse.domain.entities.Store;
-
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Сергій on 26.01.14.
@@ -18,7 +16,7 @@ public class Storage implements Serializable {
     private Long id;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    Commodity commodity;
+    List<Commodity> commodity;
 
     @Column(name = "QUANTITY", nullable = false)
     Integer quantity;
@@ -31,11 +29,11 @@ public class Storage implements Serializable {
         this.id = id;
     }
 
-    public Commodity getCommodity() {
+    public List<Commodity> getCommodity() {
         return commodity;
     }
 
-    public void setCommodity(Commodity commodity) {
+    public void setCommodity(List<Commodity> commodity) {
         this.commodity = commodity;
     }
 
