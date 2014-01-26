@@ -2,10 +2,9 @@ package ua.mind.warehouse.persistance.dao.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ua.mind.warehouse.domain.entities.Commodity;
+import ua.mind.warehouse.domain.entities.storage.Commodity;
 import ua.mind.warehouse.domain.entities.Order;
 import ua.mind.warehouse.domain.entities.Store;
-import ua.mind.warehouse.domain.entities.user.User;
 import ua.mind.warehouse.persistance.dao.CommodityDao;
 import ua.mind.warehouse.persistance.dao.UserDAO;
 
@@ -76,9 +75,7 @@ public class JPACommodityDao implements CommodityDao {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            User u = userDAO.getUserByCredentials(order.getUser().getLogin(),order.getUser().getPassword());
-            order.setUser(u);
-            entityManager.persist(order);
+            entityManager.merge(order);
             transaction.commit();
             return true;
         } catch (Exception e) {

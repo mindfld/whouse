@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition>
+    <h:form id="storageForm">
+        <p:dataTable id="storagePanel" value="#{storageBean.storageItems}" selectionMode="single" var="item">
+            <p:ajax event="rowSelect" listener="#{myBean.handleRowSelect}" update=":storageForm:addPanel"/>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputLabel value="Field 1" />
+                </f:facet>
+                <h:outputLabel value="#{item}"/>
+            </p:column>
+
+            <f:facet name="footer">
+                <p:commandButton value="New" update=":storageForm:addPanel"/>
+            </f:facet>
+        </p:dataTable>
+
+        <h:panelGrid id="addPanel" columns="2" >
+            <h:outputLabel value="Field 1"/>
+            <p:inputText id="fld1" value="" />
+            <h:outputLabel value="Field 2"/>
+            <p:inputText id="fld2" value="" />
+            <p:commandButton  value="Submit" update="storagePanel" />
+        </h:panelGrid>
+    </h:form>
+</ui:composition>
+</html>
+

@@ -1,4 +1,7 @@
-package ua.mind.warehouse.domain.entities;
+package ua.mind.warehouse.domain.entities.storage;
+
+import ua.mind.warehouse.domain.entities.MeasurementUnit;
+import ua.mind.warehouse.domain.entities.Store;
 
 import javax.persistence.*;
 
@@ -7,14 +10,18 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "COMMODITY", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "NAME") })
+        @UniqueConstraint(columnNames = "NAME")})
 public class Commodity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO,)
+    @Column(name = '')
     private Long id;
 
-    @Column(unique = true,name = "NAME",nullable = false)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    Store store;
+
+    @Column(unique = true, name = "NAME", nullable = false)
     String name;
     @Column
     String description;
@@ -28,6 +35,14 @@ public class Commodity {
         this.name = name;
         this.description = description;
         this.measurementUnit = measurementUnit;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     public Long getId() {

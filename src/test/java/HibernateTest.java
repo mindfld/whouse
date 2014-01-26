@@ -1,9 +1,7 @@
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import ua.mind.warehouse.domain.entities.Commodity;
-import ua.mind.warehouse.domain.entities.MeasurementUnit;
-import ua.mind.warehouse.domain.entities.Order;
+import ua.mind.warehouse.domain.entities.storage.Commodity;
 import ua.mind.warehouse.domain.entities.Store;
 import ua.mind.warehouse.domain.entities.user.Role;
 import ua.mind.warehouse.domain.entities.user.User;
@@ -13,7 +11,6 @@ import ua.mind.warehouse.persistance.dao.impl.JPAUserDao;
 import ua.mind.warehouse.persistance.dao.UserDAO;
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

@@ -61,9 +61,6 @@
                 <p:column headerText="Кількість">
                     <h:outputText value="#{item.quantity} #{item.commodity.measurementUnit}"/>
                 </p:column>
-                <p:column headerText="Кількість">
-                    <h:outputText value="#{item.quantity} #{item.commodity.measurementUnit}"/>
-                </p:column>
                 <p:column style="width: 75px">
                     <p:commandButton actionListener="#{orderBean.removeCommodity(index)}" value="Видалити"
                                      update="orderItems"

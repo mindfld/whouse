@@ -1,6 +1,6 @@
 package ua.mind.warehouse.persistance.dao;
 
-import ua.mind.warehouse.domain.entities.Commodity;
+import ua.mind.warehouse.domain.entities.storage.Commodity;
 import ua.mind.warehouse.domain.entities.Order;
 import ua.mind.warehouse.domain.entities.Store;
 

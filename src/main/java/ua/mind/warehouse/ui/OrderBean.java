@@ -1,6 +1,6 @@
 package ua.mind.warehouse.ui;
 
-import ua.mind.warehouse.domain.entities.Commodity;
+import ua.mind.warehouse.domain.entities.storage.Commodity;
 import ua.mind.warehouse.domain.entities.MeasurementUnit;
 import ua.mind.warehouse.domain.entities.Order;
 import ua.mind.warehouse.domain.entities.Store;
@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Сергій on 22.01.14.
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 public class OrderBean {
     private CommodityDao commodityDao = new JPACommodityDao();
     private Order currentOrder;
+    private List<Order> allOrders;
 
     private String name;
     private String description;
@@ -77,6 +79,7 @@ public class OrderBean {
         if (validateStoreItem()){
             Commodity commodity= new Commodity(name,description,measurementUnit);
             Store store = new Store(commodity, quantity);
+            commodity.setStore(store);
             currentOrder.getStore().add(store);
             setDefaultvalues();
         }else{
@@ -114,5 +117,15 @@ public class OrderBean {
         setMeasurementUnit(MeasurementUnit.pcs);
         setQuantity(0);
     }
+
+    public List<Order> getAllOrders() {
+        allOrders = commodityDao.listOrders();
+        return allOrders;
+    }
+
+    public void setAllOrders(List<Order> allOrders) {
+        this.allOrders = allOrders;
+    }
+
 
 }

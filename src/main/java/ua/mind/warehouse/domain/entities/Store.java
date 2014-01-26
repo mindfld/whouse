@@ -1,5 +1,7 @@
 package ua.mind.warehouse.domain.entities;
 
+import ua.mind.warehouse.domain.entities.storage.Commodity;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -10,21 +12,32 @@ import java.io.Serializable;
 @Table(name = "STORE")
 public class Store implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade ={CascadeType.PERSIST,CascadeType.MERGE})
+    private Order order;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Commodity commodity;
 
     @Column
     Integer quantity = 0;
 
     public Store(Commodity commodity, Integer quantity) {
-        this.commodity=commodity;
+        this.commodity = commodity;
         this.quantity = quantity;
     }
 
     public Store() {
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public Long getId() {

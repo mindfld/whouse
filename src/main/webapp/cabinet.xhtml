@@ -23,6 +23,9 @@
         <p:tab title="Створити замовлення" rendered="#{user.role=='STOREKEEPER' || user.role=='DIRECTOR'}">
             <ui:include src="wharehouse/createOrder.xhtml"/>
         </p:tab>
+        <p:tab title="Показати замовлення" rendered="#{user.role=='STOREKEEPER' || user.role=='DIRECTOR'}">
+            <ui:include src="wharehouse/listOrder.xhtml"/>
+        </p:tab>
         <p:tab title="Обороти" icon="ui-icon-document"
                rendered="#{user.role=='STOREKEEPER'}"/>
         <p:tab title="ХЗ поки шо ">

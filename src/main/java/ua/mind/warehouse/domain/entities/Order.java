@@ -14,10 +14,10 @@ import java.util.Set;
 @Table(name = "ORDERS")
 public class Order {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToMany(fetch = FetchType.EAGER, cascade ={CascadeType.PERSIST,CascadeType.MERGE})
     @JoinTable(name = "ORDERITEMS")
     private List<Store> store;
 
@@ -26,6 +26,9 @@ public class Order {
 
     @Column
     private boolean completed = false;
+
+    public Order() {
+    }
 
     public Long getId() {
         return id;
