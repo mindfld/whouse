@@ -1,4 +1,4 @@
-package ua.mind.warehouse.domain.entities;
+package ua.mind.warehouse.domain.entities.storage;
 
 /**
  * Created by Сергій on 22.01.14.
