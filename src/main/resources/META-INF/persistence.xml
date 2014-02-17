@@ -7,13 +7,14 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>ua.mind.warehouse.domain.entities.storage.Commodity</class>
         <class>ua.mind.warehouse.domain.entities.storage.StorageItem</class>
+        <class>ua.mind.warehouse.domain.entities.storage.Category</class>
         <class>ua.mind.warehouse.domain.entities.user.User</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/whouse"/>
             <property name="javax.persistence.jdbc.user" value="mind"/>
             <property name="javax.persistence.jdbc.password" value="medusa"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="show_sql" value="true"/>
         </properties>

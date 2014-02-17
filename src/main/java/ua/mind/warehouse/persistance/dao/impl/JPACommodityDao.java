@@ -2,6 +2,8 @@ package ua.mind.warehouse.persistance.dao.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ua.mind.warehouse.domain.entities.storage.Category;
+import ua.mind.warehouse.domain.entities.storage.Commodity;
 import ua.mind.warehouse.domain.entities.storage.StorageItem;
 import ua.mind.warehouse.domain.entities.user.User;
 import ua.mind.warehouse.persistance.dao.CommodityDao;
@@ -63,6 +65,36 @@ public class JPACommodityDao implements CommodityDao {
         try {
             transaction.begin();
             result = entityManager.createQuery("SELECT s FROM StorageItem s").getResultList();
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+        return result;
+    }
+
+    @Override
+    public List<Category> listCategories() {
+        List<Category> result = new ArrayList<Category>();
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            result = entityManager.createQuery("SELECT c FROM Category c").getResultList();
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+        return result;
+    }
+
+    @Override
+    public List<Commodity> getCommodityByCategory(Category category) {
+        List<Commodity> result = new ArrayList<Commodity>();
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            Query query = entityManager.createQuery("SELECT c FROM Commodity c WHERE c.category= :category_name");
+            query.setParameter("category_name",category.getName());
+            result = query.getResultList();
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();

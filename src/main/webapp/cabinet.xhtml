@@ -17,6 +17,9 @@
     <p:separator id="customSeparator" style="width:100%;height:2px"/>
 
     <p:tabView activeIndex="0">
+        <p:tab title="Заявки" rendered="#{user.role=='WORKER'}">
+            <ui:include src="wharehouse/orders.xhtml"/>
+        </p:tab>
         <p:tab title="Склад">
             <ui:include src="wharehouse/storage.xhtml"/>
         </p:tab>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition>
+    <h:form id="ordersForm">
+        <p:panel id="orderPanel">
+            <!--Category-->
+            <p:column>
+                <p:selectOneMenu value="#{ordersBean.activeCategory}">
+                    <f:selectItems value="#{ordersBean.categories}" />
+                </p:selectOneMenu>
+            </p:column>
+            <!--Commodity-->
+            <p:column>
+                <p:selectOneMenu value="#{ordersBean.activeCommodity}">
+                    <f:selectItems value="#{ordersBean.commodityByCategory}" />
+                </p:selectOneMenu>
+            </p:column>
+            <!--Quantity-->
+            <p:spinner value="#{ordersBean.activeQuantity}"/>
+            <!--Add button -->
+            <p:commandButton value="Додати" update="orderPanel" actionListener="#{ordersBean.addorderItem}" styleClass="ui-priority-primary"/>
+
+        </p:panel>
+
+    </h:form>
+</ui:composition>
+</html>
+

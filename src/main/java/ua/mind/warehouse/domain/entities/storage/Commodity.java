@@ -18,6 +18,10 @@ public class Commodity {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private StorageItem storage;
 
+    @ManyToOne
+    private Category category;
+
+
     @Column(unique = true, nullable = false)
     String name;
     @Column
@@ -74,4 +78,11 @@ public class Commodity {
         this.measurementUnit = measurementUnit;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }
