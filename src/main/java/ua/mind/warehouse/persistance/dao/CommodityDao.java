@@ -15,4 +15,5 @@ public interface CommodityDao {
     public List<StorageItem> listStorageItems();
     public List<Category> listCategories();
     public List<Commodity> getCommodityByCategory(Category category);
+    public boolean addCategory(Category category);
 }

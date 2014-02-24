@@ -6,8 +6,8 @@
     <persistence-unit name="whouse">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>ua.mind.warehouse.domain.entities.storage.Commodity</class>
-        <class>ua.mind.warehouse.domain.entities.storage.StorageItem</class>
         <class>ua.mind.warehouse.domain.entities.storage.Category</class>
+        <class>ua.mind.warehouse.domain.entities.storage.StorageItem</class>
         <class>ua.mind.warehouse.domain.entities.user.User</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

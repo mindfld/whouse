@@ -7,9 +7,9 @@ import java.util.List;
 /**
  * Created by Сергій on 17.02.14.
  */
+
 @Entity
-@Table(name = "CATEGORY", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "NAME")})
+@Table(name = "CATEGORY")
 public class Category implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

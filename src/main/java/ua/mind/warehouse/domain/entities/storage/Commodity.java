@@ -36,6 +36,8 @@ public class Commodity {
         this.name = name;
         this.description = description;
         this.measurementUnit = measurementUnit;
+        this.storage = new StorageItem();
+        storage.setCommodity(this);
     }
 
     public StorageItem getStorage() {

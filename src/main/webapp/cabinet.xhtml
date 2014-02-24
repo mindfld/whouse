@@ -11,7 +11,7 @@
 <h:body>
     <img src="images/logo.jpg" alt="wharehouse" style="width: 100%"/>
     <h:form id="cabinetForm" rendered="#{user!=null}">
-        Персональный кабінет <p:spacer width="78%" height="10"/>
+        Персональный кабінет #{user.name} <p:spacer width="78%" height="10"/>
         <p:commandButton action="#{loginBean.logout}" value="Вихід"></p:commandButton>
     </h:form>
     <p:separator id="customSeparator" style="width:100%;height:2px"/>
@@ -19,6 +19,9 @@
     <p:tabView activeIndex="0">
         <p:tab title="Заявки" rendered="#{user.role=='WORKER'}">
             <ui:include src="wharehouse/orders.xhtml"/>
+        </p:tab>
+        <p:tab title="Управління" rendered="#{user.role=='WORKER'}">
+            <ui:include src="wharehouse/commodityControl.xhtml"/>
         </p:tab>
         <p:tab title="Склад">
             <ui:include src="wharehouse/storage.xhtml"/>

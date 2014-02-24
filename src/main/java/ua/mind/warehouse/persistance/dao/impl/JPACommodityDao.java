@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import ua.mind.warehouse.domain.entities.storage.Category;
 import ua.mind.warehouse.domain.entities.storage.Commodity;
 import ua.mind.warehouse.domain.entities.storage.StorageItem;
-import ua.mind.warehouse.domain.entities.user.User;
 import ua.mind.warehouse.persistance.dao.CommodityDao;
 import ua.mind.warehouse.persistance.dao.UserDAO;
 
@@ -93,12 +92,26 @@ public class JPACommodityDao implements CommodityDao {
         try {
             transaction.begin();
             Query query = entityManager.createQuery("SELECT c FROM Commodity c WHERE c.category= :category_name");
-            query.setParameter("category_name",category.getName());
+            query.setParameter("category_name", category.getName());
             result = query.getResultList();
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
         }
         return result;
+    }
+
+    @Override
+    public boolean addCategory(Category category) {
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            transaction.begin();
+            entityManager.persist(category);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+        return false;
     }
 }

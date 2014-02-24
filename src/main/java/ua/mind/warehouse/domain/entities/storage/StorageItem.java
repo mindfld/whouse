@@ -22,6 +22,8 @@ public class StorageItem implements Serializable {
     Integer quantity;
 
     public StorageItem() {
+        commodity = new Commodity();
+        commodity.setStorage(this);
     }
 
     public StorageItem(Commodity commodity, Integer quantity) {
