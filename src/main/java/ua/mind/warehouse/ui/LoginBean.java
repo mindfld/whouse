@@ -42,7 +42,7 @@ public class LoginBean {
     }
 
     public String login() {
-        UserDAO userTemplate = (JDBCUserDao)context.getBean("userJDBCTemplate");
+        UserDAO userTemplate = (JDBCUserDao)context.getBean("userDAO");
         User user = userTemplate.getUserByCredentials(username, password);
         if (user != null) {
             HttpSession session = ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession(true);

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pm="http://primefaces.org/mobile">
+
+
+<ui:composition>
+    <h:form id="flowForm">
+        <!--Table view of all flows-->
+        <p:dataTable id="flowPanel" value="#{flowBean.flowItems}" var="item">
+            <p:column width="15" headerText="№">
+                <h:outputText value="#{item.id}"/>
+            </p:column>
+
+            <p:column headerText="Товар">
+                <h:outputText value="#{item.productName}"/>
+            </p:column>
+
+            <p:column  width="55" headerText="К-сть">
+                <h:outputText value="#{item.balance}#{item.measurementUnit}"/>
+            </p:column>
+
+            <p:column headerText="Працівник">
+                <h:outputText value="#{item.userName}"/>
+            </p:column>
+            <p:column headerText="Дата">
+                <h:outputText value="#{item.date}"/>
+            </p:column>
+            <p:column headerText="Коментар">
+                <h:outputText value="#{item.comments}"/>
+            </p:column>
+
+        </p:dataTable>
+    </h:form>
+</ui:composition>
+</html>
+

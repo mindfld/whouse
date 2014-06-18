@@ -26,8 +26,8 @@
         <p:tab title="Склад">
             <ui:include src="wharehouse/storage.xhtml"/>
         </p:tab>
-        <p:tab title="Обороти" rendered="#{user.role=='STOREKEEPER' || user.role=='DIRECTOR' || user.role=='STOREKEEPER'}">
-            <ui:include src=""/>
+        <p:tab title="Обороти" rendered="#{user.role=='STOREKEEPER' || user.role=='DIRECTOR' || user.role=='ADMINISTRATOR'}">
+            <ui:include src="wharehouse/flows.xhtml"/>
         </p:tab>
         <p:tab title="Переміщення" rendered="#{user.role=='STOREKEEPER' || user.role=='DIRECTOR' || user.role=='STOREKEEPER'}">
             <ui:include src=""/>

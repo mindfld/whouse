@@ -22,7 +22,7 @@ import java.util.List;
 @RequestScoped
 public class StorageBean {
     private static ApplicationContext context = new ClassPathXmlApplicationContext("spring-beans.xml");
-    private static StorageDAO dao = (JDBCStorageDAO)context.getBean("storageJDBCTemplate");
+    private static StorageDAO dao = (JDBCStorageDAO)context.getBean("storageDAO");
 
     private List<Storage> storageItems;
 

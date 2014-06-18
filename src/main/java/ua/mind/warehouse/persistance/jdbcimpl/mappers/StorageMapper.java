@@ -23,7 +23,7 @@ public class StorageMapper implements RowMapper<Storage> {
         item.setId(resultSet.getLong("id"));
         item.setAvailable(resultSet.getDouble("available_quantity"));
 
-        StorageDAO storageTemplate = (JDBCStorageDAO) context.getBean("storageJDBCTemplate");
+        StorageDAO storageTemplate = (JDBCStorageDAO) context.getBean("storageDAO");
         item.setCommodity(storageTemplate.getCommodityById(resultSet.getLong("commodity_id")));
         return item;
     }

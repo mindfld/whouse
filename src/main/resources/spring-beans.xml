@@ -20,12 +20,16 @@
 
 
     <!-- Definition for studentJDBCTemplate bean -->
-    <bean id="userJDBCTemplate"
+    <bean id="userDAO"
           class="ua.mind.warehouse.persistance.jdbcimpl.JDBCUserDao">
         <property name="dataSource"  ref="dataSource" />
     </bean>
-    <bean id="storageJDBCTemplate"
+    <bean id="storageDAO"
           class="ua.mind.warehouse.persistance.jdbcimpl.JDBCStorageDAO">
+        <property name="dataSource"  ref="dataSource" />
+    </bean>
+    <bean id="flowDAO"
+          class="ua.mind.warehouse.persistance.jdbcimpl.JDBCFlowDAO">
         <property name="dataSource"  ref="dataSource" />
     </bean>
 
