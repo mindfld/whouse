@@ -1,8 +1,10 @@
 package ua.mind.warehouse.ui;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ua.mind.warehouse.domain.entities.user.User;
-import ua.mind.warehouse.persistance.dao.impl.JPAUserDao;
 import ua.mind.warehouse.persistance.dao.UserDAO;
+import ua.mind.warehouse.persistance.jdbcimpl.JDBCUserDao;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -19,8 +21,9 @@ import javax.servlet.http.HttpSession;
 public class LoginBean {
 
     private String username;
-
     private String password;
+    private static ApplicationContext context = new ClassPathXmlApplicationContext("spring-beans.xml");
+
 
     public String getUsername() {
         return username;
@@ -39,8 +42,8 @@ public class LoginBean {
     }
 
     public String login() {
-        UserDAO userDao = new JPAUserDao();
-        User user = userDao.getUserByCredentials(username, password);
+        UserDAO userTemplate = (JDBCUserDao)context.getBean("userJDBCTemplate");
+        User user = userTemplate.getUserByCredentials(username, password);
         if (user != null) {
             HttpSession session = ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession(true);
             session.setAttribute("user", user);

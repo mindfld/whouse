@@ -1,58 +1,39 @@
 package ua.mind.warehouse.domain.entities.user;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by Сергій on 17.01.14.
  */
 
-@Entity
-@Table(name = "USERS")
 public class User implements Serializable {
 
     private static User anonymous = new User ("Anonymous",Role.DIRECTOR,"anon","anon");
 
-    @Id
-    @GeneratedValue
     private Long id;
-
-    @Column
     private String name;
-
-    @Column
     private Role role;
-
-    @Column
     private String password;
-
-    @Column
     private String login;
 
     public String getLogin() {
         return login;
     }
-
     public void setLogin(String login) {
         this.login = login;
     }
-
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
-
     public Role getRole() {
         return role;
     }
-
     public void setRole(Role role) {
         this.role = role;
     }
-
     public User() {
     }
 

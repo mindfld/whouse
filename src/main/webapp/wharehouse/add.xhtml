@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition>
+        <p:column headerText="Назва товару: ">
+            <h:inputText value="#{storageBean.name}" required="true"/>
+        </p:column>
+        <p:spacer width="20"/>
+        <p:column headerText="Опис товару: ">
+            <h:inputText value="#{storageBean.description}"/>
+        </p:column>
+        <p:spacer width="20"/>
+        <p:column>
+            <p:selectOneMenu value="#{storageBean.measurementUnit}" style="top:9px;">
+                <f:selectItem itemLabel="шт" itemValue="шт"/>
+                <f:selectItem itemLabel="кг" itemValue="кг"/>
+                <f:selectItem itemLabel="л" itemValue="л"/>
+                <f:selectItem itemLabel="м" itemValue="м"/>
+                <f:selectItem itemLabel="гр" itemValue="гр"/>
+            </p:selectOneMenu>
+        </p:column>
+        <p:spacer width="20"/>
+        <p:column headerText="Кількість: " rendered="true">
+            <h:inputText value="#{storageBean.available}" mask="9999"/>
+        </p:column>
+        <p:spacer width="20"/>
+
+        <p:commandButton value="Додати товар" id="add" update="storageForm"
+                         actionListener="#{storageBean.addItem}" styleClass="ui-priority-primary"/>
+</ui:composition>
+</html>
+

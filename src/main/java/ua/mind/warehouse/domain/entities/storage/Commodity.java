@@ -5,47 +5,21 @@ import javax.persistence.*;
 /**
  * Created by Сергій on 17.01.14.
  */
-@Entity
-@Table(name = "COMMODITY", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "NAME")})
 public class Commodity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column( unique = true, nullable = false)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private StorageItem storage;
-
-    @ManyToOne
-    private Category category;
-
-
-    @Column(unique = true, nullable = false)
-    String name;
-    @Column
-    String description;
-    @Column(nullable = false)
-    MeasurementUnit measurementUnit;
+    private String name;
+    private String description;
+    private String measurementUnit;
 
     public Commodity() {
     }
 
-    public Commodity(String name, String description, MeasurementUnit measurementUnit) {
+    public Commodity(String name, String description, String measurementUnit) {
         this.name = name;
         this.description = description;
         this.measurementUnit = measurementUnit;
-        this.storage = new StorageItem();
-        storage.setCommodity(this);
-    }
-
-    public StorageItem getStorage() {
-        return storage;
-    }
-
-    public void setStorage(StorageItem storage) {
-        this.storage = storage;
     }
 
     public Long getId() {
@@ -72,19 +46,38 @@ public class Commodity {
         this.description = description;
     }
 
-    public MeasurementUnit getMeasurementUnit() {
+    public String getMeasurementUnit() {
         return measurementUnit;
     }
 
-    public void setMeasurementUnit(MeasurementUnit measurementUnit) {
+    public void setMeasurementUnit(String measurementUnit) {
         this.measurementUnit = measurementUnit;
     }
 
-    public Category getCategory() {
-        return category;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Commodity commodity = (Commodity) o;
+
+        if (description != null ? !description.equals(commodity.description) : commodity.description != null)
+            return false;
+        if (!id.equals(commodity.id)) return false;
+        if (measurementUnit != null ? !measurementUnit.equals(commodity.measurementUnit) : commodity.measurementUnit != null)
+            return false;
+        if (!name.equals(commodity.name)) return false;
+
+        return true;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (measurementUnit != null ? measurementUnit.hashCode() : 0);
+        return result;
     }
 }
+
