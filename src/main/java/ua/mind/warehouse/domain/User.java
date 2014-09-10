@@ -1,19 +1,27 @@
-package ua.mind.warehouse.domain.entities.user;
+package ua.mind.warehouse.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by Сергій on 17.01.14.
  */
-
+@Entity(name="account")
 public class User implements Serializable {
 
-    private static User anonymous = new User ("Anonymous",Role.DIRECTOR,"anon","anon");
+    private static User anonymous = new User ("Anonymous", Role.DIRECTOR,"anon","anon");
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Basic
     private String name;
+    @Basic
     private Role role;
+    @Basic
     private String password;
+    @Basic
     private String login;
 
     public String getLogin() {

@@ -1,4 +1,4 @@
-package ua.mind.warehouse.domain.entities.storage;
+package ua.mind.warehouse.domain;
 
 import java.io.Serializable;
 
