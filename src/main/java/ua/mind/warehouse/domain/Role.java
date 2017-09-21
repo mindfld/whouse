@@ -1,4 +1,4 @@
-package ua.mind.warehouse.domain.entities.user;
+package ua.mind.warehouse.domain;
 
 /**
  * Created by Сергій on 17.01.14.

@@ -1,4 +1,4 @@
-package ua.mind.warehouse.domain.entities.flow;
+package ua.mind.warehouse.domain;
 
 import java.io.Serializable;
 import java.util.Date;
